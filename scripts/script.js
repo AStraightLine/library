@@ -11,9 +11,10 @@ function addBookToLibrary() {
     const authorInput = document.getElementById('authorInput').value;
     const pagesInput = document.getElementById('pagesInput').value;
     const dateInput = document.getElementById('dateInput').value;
-    const readInput = document.getElementById('dateInput').value;
+    const readInput = document.getElementById('readInput').value;
     const newBook = new Book(titleInput, authorInput, pagesInput, dateInput, readInput);
     library.push(newBook);
+    displayNewlyAddedBook();
     closeForm();
     return false;
 }
@@ -52,6 +53,41 @@ function displayBooks() {
         bookCard.appendChild(bookDate);
         bookCard.appendChild(bookRead);
     }
+}
+
+function displayNewlyAddedBook() {
+    const bookCard = document.createElement("div");
+    const bookTitle = document.createElement("span");
+    const bookAuthor = document.createElement("span");
+    const bookPages = document.createElement("span");
+    const bookDate = document.createElement("span");
+    const bookRead = document.createElement("input");
+    bookCard.setAttribute('id', 'bookCard'+(library.length)-1);
+    bookCard.classList.add('bookCard');
+    bookCardContainer.appendChild(bookCard);
+    bookTitle.setAttribute('id', 'bookTitle'+(library.length)-1);
+    bookTitle.classList.add('bookTitle.info');
+    bookAuthor.setAttribute('id', 'bookAuthor'+(library.length)-1);
+    bookAuthor.classList.add('bookAuthorInfo');
+    bookPages.setAttribute('id', 'bookPages'+(library.length)-1);
+    bookPages.classList.add('bookPagesInfo');
+    bookDate.setAttribute('id', 'bookDate'+(library.length)-1);
+    bookDate.classList.add('bookDateInfo');
+    bookRead.setAttribute('id', 'bookRead'+(library.length)-1);
+    bookRead.classList.add('bookReadInfo');
+    bookRead.setAttribute('type', 'checkbox');
+    console.log(library[(library.length)-1].read);
+    if(library[(library.length)-1].read == "true") {
+        bookRead.setAttribute('checked', 'checked');
+    }
+    bookTitle.textContent = library[(library.length)-1].title;
+    bookAuthor.textContent = library[(library.length)-1].author;
+    bookPages.textContent = library[(library.length)-1].pages + " pages";
+    bookCard.appendChild(bookTitle);
+    bookCard.appendChild(bookAuthor);
+    bookCard.appendChild(bookPages);
+    bookCard.appendChild(bookDate);
+    bookCard.appendChild(bookRead);
 }
 
 function openForm() {
