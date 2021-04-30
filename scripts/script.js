@@ -14,6 +14,7 @@ function addBookToLibrary() {
     const readInput = document.getElementById('dateInput').value;
     const newBook = new Book(titleInput, authorInput, pagesInput, dateInput, readInput);
     library.push(newBook);
+    closeForm();
     return false;
 }
 
@@ -29,7 +30,7 @@ function displayBooks() {
         bookCard.classList.add('bookCard');
         bookCardContainer.appendChild(bookCard);
         bookTitle.setAttribute('id', 'bookTitle'+i);
-        bookTitle.classList.add('bookCardInfo');
+        bookTitle.classList.add('bookTitle.info');
         bookAuthor.setAttribute('id', 'bookAuthor'+i);
         bookAuthor.classList.add('bookAuthorInfo');
         bookPages.setAttribute('id', 'bookPages'+i);
@@ -44,7 +45,7 @@ function displayBooks() {
         }
         bookTitle.textContent = library[i].title;
         bookAuthor.textContent = library[i].author;
-        bookPages.textContent = library[i].pages + " pages.";
+        bookPages.textContent = library[i].pages + " pages";
         bookCard.appendChild(bookTitle);
         bookCard.appendChild(bookAuthor);
         bookCard.appendChild(bookPages);
@@ -53,7 +54,19 @@ function displayBooks() {
     }
 }
 
-const addBookButton = document.getElementById('addBookButton')
+function openForm() {
+    newBookForm.style.display = "flex";
+    newBookForm.style.justifyContent = "center";
+    newBookForm.style.alignItems = "center";
+}
+
+function closeForm() {
+    newBookForm.style.display = "none";
+}
+
+const newBookFormButton = document.getElementById('newBookFormButton')
+const newBookForm = document.getElementById('formModal');
+const closeFormButton = document.getElementById('closeFormButton')
 const bookCardContainer = document.getElementById('bookCardContainer');
 
 let library = [];
@@ -67,5 +80,19 @@ library.push(beyondGoodAndEvil);
 library.push(theSilmarillion);
 library.push(idyllsOfTheKing);
 library.push(ivanhoe);
+
+displayBooks();
+
+newBookFormButton.addEventListener('click', () => {
+    openForm();
+});
+
+closeFormButton.addEventListener('click', () => {
+    closeForm();
+});
+
+
+
+
 
 

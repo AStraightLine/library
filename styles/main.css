@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    background: linear-gradient(180deg, rgba(110,206,255,1) 0%, rgba(173,227,255,1) 35%, rgba(231,247,255,1) 100%);
+}
+
+header {
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    width: 50vw;
+    line-height: 20vh;
+    text-align: center;
+}
+
+#newBookFormButton {
+    width: 8vw;
+    height: 4vh;
+    align-self: center;
+    margin-right: 20vw;
+    background-color: white;
+    border: none;
+    filter: drop-shadow(0.3em 0.3em 0.3em rgba(25, 25, 25, 0.5));
+}
+
+content {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+#bookCardContainer {
+    width: 65vw;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: rgba(231,247,255,1);
+    border-radius: 0.25vw;
+}
+
+.bookCard {
+    width: 17vw;
+    height: 20vh;
+    background-color: rgba(84,174,223,1);
+    border-radius: 0.25vw;
+    margin: 1vw;
+    filter: drop-shadow(0.3em 0.3em 0.3em rgba(25, 25, 25, 0.3));
+}
+
+#formModal {
+    display: none;
+    position: absolute;
+    top: 0;
+    z-index: 9;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+#popupBody {
+    width: 22vw;
+    height: 67.5vh;
+    background-color: white;
+    border-radius: 0.25vw;
+    filter: drop-shadow(0.3em 0.3em 0.3em rgba(25, 25, 25, 0.5));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#formTitle {
+    width: 22vw;
+    height: 10vh;
+    text-align: center;
+    font-size: 1.75vw;
+    line-height: 10vh;
+    color: rgb(75, 75, 75);
+}
+
+#formContainer {
+    width: 15vw;
+    height: 57vh;
+    display: flex;
+    padding-top: 1vh;
+}
+
+#newBookForm {
+    width: 15vw;
+    height: 57vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start
+}
+
+.formInputLabels {
+    width: 15vw;
+    height: 3vh;
+    color: rgb(75, 75, 75);
+    font-size: 1vw;
+}
+
+.formInput {
+    width: 15vw;
+    height: 4vh;
+    border: 0.1vw solid rgb(196, 196, 196);
+    border-radius: 0.25vw;
+    margin-bottom: 2vh;
+    filter: drop-shadow(0.25em 0.3em 0.35em rgba(50, 50, 50, 0.3));
+    color: rgb(75, 75, 75);
+    line-height: 3.5vh;
+    font-size: 0.9vw;
+}
+
+#formControllButtonsContainer {
+    width: 15vw;
+    height: 7.5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formControllButton {
+    width: 4.5vw;
+    height: 4vh;
+    background-color: white;
+    border: 0.1vw solid rgb(196, 196, 196);
+    border-radius: 0.25vw;
+    font-size: 0.8vw;
+    filter: drop-shadow(0.25em 0.3em 0.35em rgba(50, 50, 50, 0.5));
+}
+
+
+
+
+
