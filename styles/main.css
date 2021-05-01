@@ -19,19 +19,23 @@ header {
 }
 
 h1 {
-    width: 50vw;
+    width: 62.5vw;
     line-height: 20vh;
+    font-size: 3vw;
     text-align: center;
 }
 
 #newBookFormButton {
-    width: 8vw;
-    height: 4vh;
+    width: 10vw;
+    height: 5vh;
     align-self: center;
-    margin-right: 20vw;
-    background-color: white;
+    margin-right: 22.5vw;
+    background: linear-gradient(45deg, rgba(136,156,255,1) 35%, rgba(145,163,255,1) 60%, rgba(155,171,255,1) 100%);
+    color: white;
+    font-size: 1.5vw;
     border: none;
-    filter: drop-shadow(0.3em 0.3em 0.3em rgba(25, 25, 25, 0.5));
+    border-radius: 0.25vw;
+    filter: drop-shadow(0.2em 0.2em 0.2em rgba(25, 25, 25, 0.5));
 }
 
 content {
@@ -45,16 +49,63 @@ content {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: rgba(231,247,255,1);
     border-radius: 0.25vw;
 }
 
 .bookCard {
     width: 17vw;
     height: 20vh;
-    background-color: rgba(84,174,223,1);
+    background: linear-gradient(45deg, rgba(136,156,255,1) 35%, rgba(145,163,255,1) 60%, rgba(155,171,255,1) 100%);
     border-radius: 0.25vw;
     margin: 1vw;
+    filter: drop-shadow(0.3em 0.3em 0.3em rgba(25, 25, 25, 0.3));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cardContentContainer {
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    height: 16vh;
+}
+
+.bookTitleInfo {
+    width: 15vw;
+    font-size: 1.25vw;
+    margin-bottom: 0.75vh;
+}
+
+.bookAuthorInfo {
+    width: 15vw;
+    font-size: 1vw;
+    margin-bottom: 0.5vh;
+}
+
+.bookDateInfo {
+    width: 15vw;
+    font-size: 1vw;
+}
+
+.bookCardButtonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.bookReadButton {
+    width: 5vw;
+    border: none;
+    border-radius: 0.1vw;
+    filter: drop-shadow(0.3em 0.3em 0.3em rgba(25, 25, 25, 0.3));
+}
+
+.deleteCardButton {
+    width: 5vw;
+    border: none;
+    border-radius: 0.1vw;
     filter: drop-shadow(0.3em 0.3em 0.3em rgba(25, 25, 25, 0.3));
 }
 
@@ -139,7 +190,6 @@ content {
     font-size: 0.8vw;
     filter: drop-shadow(0.25em 0.3em 0.35em rgba(50, 50, 50, 0.5));
 }
-
 
 
 

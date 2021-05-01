@@ -21,73 +21,154 @@ function addBookToLibrary() {
 
 function displayBooks() {
     for (let i = 0; i < library.length; i++) {
-        const bookCard = document.createElement("div");
-        const bookTitle = document.createElement("span");
-        const bookAuthor = document.createElement("span");
-        const bookPages = document.createElement("span");
-        const bookDate = document.createElement("span");
-        const bookRead = document.createElement("input");
+        const bookCard = document.createElement('div');
+        const cardContentContainer = document.createElement('div');
+        const bookTitle = document.createElement('span');
+        const bookAuthor = document.createElement('span');
+        const bookDate = document.createElement('span');
+        const bookCardButtonsContainer = document.createElement('div');
+        const bookReadButton = document.createElement("button");
+        const deleteCardButton = document.createElement("button");
         bookCard.setAttribute('id', 'bookCard'+i);
         bookCard.classList.add('bookCard');
         bookCardContainer.appendChild(bookCard);
+        cardContentContainer.classList.add('cardContentContainer');
+        cardContentContainer.setAttribute('id', 'cardContentContainer'+i);
+        bookCard.appendChild(cardContentContainer);
         bookTitle.setAttribute('id', 'bookTitle'+i);
-        bookTitle.classList.add('bookTitle.info');
+        bookTitle.classList.add('bookTitleInfo');
         bookAuthor.setAttribute('id', 'bookAuthor'+i);
         bookAuthor.classList.add('bookAuthorInfo');
-        bookPages.setAttribute('id', 'bookPages'+i);
-        bookPages.classList.add('bookPagesInfo');
         bookDate.setAttribute('id', 'bookDate'+i);
         bookDate.classList.add('bookDateInfo');
-        bookRead.setAttribute('id', 'bookRead'+i);
-        bookRead.classList.add('bookReadInfo');
-        bookRead.setAttribute('type', 'checkbox');
-        if(library[i].read == true) {
-            bookRead.setAttribute('checked', 'checked');
+        bookCardButtonsContainer.setAttribute('id', 'bookCardButtonContainer'+i);
+        bookCardButtonsContainer.classList.add('bookCardButtonsContainer');
+        bookReadButton.setAttribute('id', 'bookReadButton'+i);
+        bookReadButton.classList.add('bookReadButton');
+        bookReadButton.setAttribute('type', 'checkbox');
+        deleteCardButton.setAttribute('id', 'deleteCardButton'+i)
+        deleteCardButton.classList.add('deleteCardButton');
+        if(library[i].read == true || library[i].read == "true") {
+            bookReadButton.textContent = "Read";
+        } else {
+            bookReadButton.textContent = "Not Read";
         }
         bookTitle.textContent = library[i].title;
-        bookAuthor.textContent = library[i].author;
-        bookPages.textContent = library[i].pages + " pages";
-        bookCard.appendChild(bookTitle);
-        bookCard.appendChild(bookAuthor);
-        bookCard.appendChild(bookPages);
-        bookCard.appendChild(bookDate);
-        bookCard.appendChild(bookRead);
+        bookAuthor.textContent = "By: " + library[i].author;
+        bookDate.textContent = "Published: " + library[i].date;
+        deleteCardButton.textContent = 'Remove';
+        cardContentContainer.appendChild(bookTitle);
+        cardContentContainer.appendChild(bookAuthor);
+        cardContentContainer.appendChild(bookDate);
+        cardContentContainer.appendChild(bookCardButtonsContainer);
+        bookCardButtonsContainer.appendChild(bookReadButton);
+        bookCardButtonsContainer.appendChild(deleteCardButton);
+
+        bookCardRemoveButtons = document.querySelectorAll('.deleteCardButton');
+        bookCardReadButtons = document.querySelectorAll('.bookReadButton');
     }
 }
 
 function displayNewlyAddedBook() {
     const bookCard = document.createElement("div");
+    const cardContentContainer = document.createElement("div");
     const bookTitle = document.createElement("span");
     const bookAuthor = document.createElement("span");
-    const bookPages = document.createElement("span");
     const bookDate = document.createElement("span");
-    const bookRead = document.createElement("input");
-    bookCard.setAttribute('id', 'bookCard'+(library.length)-1);
+    const bookCardButtonsContainer = document.createElement('div');
+    const bookReadButton = document.createElement("button");
+    const deleteCardButton = document.createElement("button");
+    bookCard.setAttribute('id', 'bookCard'+((library.length)-1));
     bookCard.classList.add('bookCard');
     bookCardContainer.appendChild(bookCard);
-    bookTitle.setAttribute('id', 'bookTitle'+(library.length)-1);
-    bookTitle.classList.add('bookTitle.info');
-    bookAuthor.setAttribute('id', 'bookAuthor'+(library.length)-1);
+    cardContentContainer.classList.add('cardContentContainer');
+    cardContentContainer.setAttribute('id', 'cardContentContainer'+((library.length)-1));
+    bookCard.appendChild(cardContentContainer);
+    bookTitle.setAttribute('id', 'bookTitle'+((library.length)-1));
+    bookTitle.classList.add('bookTitleInfo');
+    bookAuthor.setAttribute('id', 'bookAuthor'+((library.length)-1));
     bookAuthor.classList.add('bookAuthorInfo');
-    bookPages.setAttribute('id', 'bookPages'+(library.length)-1);
-    bookPages.classList.add('bookPagesInfo');
-    bookDate.setAttribute('id', 'bookDate'+(library.length)-1);
+    bookDate.setAttribute('id', 'bookDate'+((library.length)-1));
     bookDate.classList.add('bookDateInfo');
-    bookRead.setAttribute('id', 'bookRead'+(library.length)-1);
-    bookRead.classList.add('bookReadInfo');
-    bookRead.setAttribute('type', 'checkbox');
-    console.log(library[(library.length)-1].read);
-    if(library[(library.length)-1].read == "true") {
-        bookRead.setAttribute('checked', 'checked');
+    bookCardButtonsContainer.setAttribute('id', 'bookCardButtonContainer'+((library.length)-1));
+    bookCardButtonsContainer.classList.add('bookCardButtonsContainer');
+    bookReadButton.setAttribute('id', 'bookReadButton'+((library.length)-1));
+    bookReadButton.classList.add('bookReadButton');
+    bookReadButton.setAttribute('type', 'checkbox');
+    deleteCardButton.setAttribute('id', 'deleteCardButton'+ ((library.length)-1));
+    deleteCardButton.classList.add('deleteCardButton');
+    if(library[(library.length)-1].read == "true" || library[((library.length)-1)].read == true) {
+        bookReadButton.textContent = "Read";
+    } else {
+        bookReadButton.textContent = "Not Read";
     }
-    bookTitle.textContent = library[(library.length)-1].title;
-    bookAuthor.textContent = library[(library.length)-1].author;
-    bookPages.textContent = library[(library.length)-1].pages + " pages";
-    bookCard.appendChild(bookTitle);
-    bookCard.appendChild(bookAuthor);
-    bookCard.appendChild(bookPages);
-    bookCard.appendChild(bookDate);
-    bookCard.appendChild(bookRead);
+    bookTitle.textContent = library[((library.length)-1)].title;
+    bookAuthor.textContent = "By: " + library[((library.length)-1)].author;
+
+    // Date formatting, input default format is 'yyyy-mm-dd'
+    const dateComponentsArray = (library[((library.length)-1)].date).split('-');
+    let year = dateComponentsArray[0].toString();
+    let month = dateComponentsArray[1].toString();
+    let day = dateComponentsArray[2].toString();
+    switch (month) {
+        case '01':
+            month = 'January';
+            break;
+        case '02':
+            month = 'February';
+            break;
+        case '03':
+            month = 'March';
+            break;
+        case '04':
+            month = 'April';
+            break;
+        case '05':
+            month = 'May';
+            break;
+        case '06':
+            month = 'June';
+            break;
+        case '07':
+            month = 'July';
+            break;
+        case '08':
+            month = 'August';
+            break;
+        case '09':
+            month = 'September';
+            break;
+        case '10':
+            month = 'October';
+            break;
+        case '11':
+            month = 'November';
+            break;
+        case '12':
+            month = 'December';
+            break;
+    }
+    bookDate.textContent = "Published: " + month + " " + day + "th " + year;
+    deleteCardButton.textContent = 'Remove';
+    cardContentContainer.appendChild(bookTitle);
+    cardContentContainer.appendChild(bookAuthor);
+    cardContentContainer.appendChild(bookDate);
+    cardContentContainer.appendChild(bookCardButtonsContainer);
+    bookCardButtonsContainer.appendChild(bookReadButton);
+    bookCardButtonsContainer.appendChild(deleteCardButton);
+
+    bookCardRemoveButtons = document.querySelectorAll('.deleteCardButton');
+    let newCardRemoveButton = document.getElementById('deleteCardButton'+((library.length)-1));
+    newCardRemoveButton.addEventListener('click', () => {     
+        bookCardRemoveButtonHandler(newCardRemoveButton);
+    });
+
+
+    bookCardReadButtons = document.querySelectorAll('.bookReadButton');
+    let newCardReadButton = document.getElementById('bookReadButton'+((library.length)-1));
+    newCardReadButton.addEventListener('click', () => {     
+        bookCardReadButtonsHandler(newCardReadButton);
+    });
 }
 
 function openForm() {
@@ -100,17 +181,41 @@ function closeForm() {
     newBookForm.style.display = "none";
 }
 
+function bookCardRemoveButtonHandler(button) {
+    let currentCard = (button.getAttribute('id')).split('');
+    currentCard = currentCard[(currentCard.length) - 1];
+    library.splice(currentCard, 1);
+    currentCard = document.getElementById('bookCard' + currentCard);
+    currentCard.remove();
+    bookCardRemoveButtons = document.querySelectorAll('.deleteCardButton');
+}
+
+function bookCardReadButtonsHandler(button) {
+    let currentCard = (button.getAttribute('id')).split('');
+    currentCard = currentCard[(currentCard.length) - 1];
+    let currentCardReadButton = document.getElementById('bookReadButton' + currentCard);
+    if(library[currentCard].read == true || library[currentCard].read == "true") {
+        library[currentCard].read = false;
+        currentCardReadButton.textContent = "Not Read";
+    } else {
+        library[currentCard].read = true;
+        currentCardReadButton.textContent = "Read";
+    }
+}
+
 const newBookFormButton = document.getElementById('newBookFormButton')
 const newBookForm = document.getElementById('formModal');
-const closeFormButton = document.getElementById('closeFormButton')
+const closeFormButton = document.getElementById('closeFormButton');
 const bookCardContainer = document.getElementById('bookCardContainer');
+let bookCardRemoveButtons = document.querySelectorAll('.deleteCardButton');
+let bookCardReadButtons = document.querySelectorAll('.bookReadButton');
 
 let library = [];
 
 const beyondGoodAndEvil = new Book("Beyond Good and Evil", "Friedrich Nietzsche", 224, 1886, true);
-const theSilmarillion = new Book("The Silmarillion", "J.R.R. Tolkien", 443, 1977, true);
+const theSilmarillion = new Book("The Silmarillion", "J.R.R. Tolkien", 443, 'September 15th 1977', true);
 const idyllsOfTheKing = new Book("Idylls of the King", "Alfred Tennyson", 384, 1859, true); 
-const ivanhoe = new Book("Ivanhoe", "Walter Scott", 496, 1819, true);
+const ivanhoe = new Book("Ivanhoe", "Walter Scott", 496, 'December 1819', true);
 
 library.push(beyondGoodAndEvil);
 library.push(theSilmarillion);
@@ -125,6 +230,18 @@ newBookFormButton.addEventListener('click', () => {
 
 closeFormButton.addEventListener('click', () => {
     closeForm();
+});
+
+bookCardRemoveButtons.forEach((button) => {
+    button.addEventListener('click', () => {     
+        bookCardRemoveButtonHandler(button);
+    });
+});
+
+bookCardReadButtons.forEach((button) => {
+    button.addEventListener('click', () => {     
+        bookCardReadButtonsHandler(button);
+    });
 });
 
 
