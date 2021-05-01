@@ -5,3 +5,4 @@ The Odin Project - JavaScript Pathway - Project 1: Library
 2. Styled the popup form for adding a new book and basic layout for displaying book cards.
 3. Implemented function to display a newly added book as soon as it is added.
 4. Implemented functionality for changing 'Read' status of a book, both newly added and already present, and for deleting book cards from the library and display.
+5. Fixed bug relating to updating eventlisteners, element IDs and the library array on deletiion of a card.

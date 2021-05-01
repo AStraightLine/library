@@ -20,6 +20,14 @@ function addBookToLibrary() {
 }
 
 function displayBooks() {
+
+    // Remove all book cards and repopulate to update id's with correct array positions after removal of a card.
+    let child = bookCardContainer.lastElementChild;
+    while(child) {
+        bookCardContainer.removeChild(child);
+        child = bookCardContainer.lastElementChild;
+    }
+
     for (let i = 0; i < library.length; i++) {
         const bookCard = document.createElement('div');
         const cardContentContainer = document.createElement('div');
@@ -63,10 +71,10 @@ function displayBooks() {
         cardContentContainer.appendChild(bookCardButtonsContainer);
         bookCardButtonsContainer.appendChild(bookReadButton);
         bookCardButtonsContainer.appendChild(deleteCardButton);
-
-        bookCardRemoveButtons = document.querySelectorAll('.deleteCardButton');
-        bookCardReadButtons = document.querySelectorAll('.bookReadButton');
     }
+
+    updateRemoveListeners();
+    updateReadListeners();
 }
 
 function displayNewlyAddedBook() {
@@ -157,18 +165,8 @@ function displayNewlyAddedBook() {
     bookCardButtonsContainer.appendChild(bookReadButton);
     bookCardButtonsContainer.appendChild(deleteCardButton);
 
-    bookCardRemoveButtons = document.querySelectorAll('.deleteCardButton');
-    let newCardRemoveButton = document.getElementById('deleteCardButton'+((library.length)-1));
-    newCardRemoveButton.addEventListener('click', () => {     
-        bookCardRemoveButtonHandler(newCardRemoveButton);
-    });
-
-
-    bookCardReadButtons = document.querySelectorAll('.bookReadButton');
-    let newCardReadButton = document.getElementById('bookReadButton'+((library.length)-1));
-    newCardReadButton.addEventListener('click', () => {     
-        bookCardReadButtonsHandler(newCardReadButton);
-    });
+    updateRemoveListeners();
+    updateReadListeners();
 }
 
 function openForm() {
@@ -181,16 +179,19 @@ function closeForm() {
     newBookForm.style.display = "none";
 }
 
-function bookCardRemoveButtonHandler(button) {
+function bookCardRemoveButtonHandler(e) {
+    let button = e.target;
     let currentCard = (button.getAttribute('id')).split('');
     currentCard = currentCard[(currentCard.length) - 1];
     library.splice(currentCard, 1);
     currentCard = document.getElementById('bookCard' + currentCard);
     currentCard.remove();
     bookCardRemoveButtons = document.querySelectorAll('.deleteCardButton');
+    displayBooks();
 }
 
-function bookCardReadButtonsHandler(button) {
+function bookCardReadButtonsHandler(e) {
+    let button = e.target;
     let currentCard = (button.getAttribute('id')).split('');
     currentCard = currentCard[(currentCard.length) - 1];
     let currentCardReadButton = document.getElementById('bookReadButton' + currentCard);
@@ -201,6 +202,34 @@ function bookCardReadButtonsHandler(button) {
         library[currentCard].read = true;
         currentCardReadButton.textContent = "Read";
     }
+}
+
+function updateRemoveListeners() {
+    bookCardRemoveButtons = document.querySelectorAll('.deleteCardButton');
+
+    // Remove old event listeners first
+    bookCardRemoveButtons.forEach((button) => {
+        button.removeEventListener('click', bookCardRemoveButtonHandler);
+    });
+
+    // Add new event listeners
+    bookCardRemoveButtons.forEach((button) => {
+        button.addEventListener('click', bookCardRemoveButtonHandler);
+    });
+}
+
+function updateReadListeners() {
+    bookCardReadButtons = document.querySelectorAll('.bookReadButton');
+
+    // Remove old event listeners first
+    bookCardRemoveButtons.forEach((button) => {
+        button.removeEventListener('click', bookCardReadButtonsHandler);
+    });
+
+    // Add new event listeners
+    bookCardReadButtons.forEach((button) => {
+        button.addEventListener('click', bookCardReadButtonsHandler);
+    });
 }
 
 const newBookFormButton = document.getElementById('newBookFormButton')
@@ -233,15 +262,11 @@ closeFormButton.addEventListener('click', () => {
 });
 
 bookCardRemoveButtons.forEach((button) => {
-    button.addEventListener('click', () => {     
-        bookCardRemoveButtonHandler(button);
-    });
+    button.addEventListener('click', bookCardRemoveButtonHandler);
 });
 
 bookCardReadButtons.forEach((button) => {
-    button.addEventListener('click', () => {     
-        bookCardReadButtonsHandler(button);
-    });
+    button.addEventListener('click', bookCardReadButtonsHandler);
 });
 
 
