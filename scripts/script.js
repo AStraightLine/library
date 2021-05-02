@@ -16,6 +16,8 @@ function addBookToLibrary() {
     library.push(newBook);
     displayNewlyAddedBook();
     closeForm();
+    populateStorage();
+    getLocalLibrary();
     return false;
 }
 
@@ -77,6 +79,8 @@ function displayBooks() {
 
     updateRemoveListeners();
     updateReadListeners();
+    populateStorage();
+    getLocalLibrary();
 }
 
 function displayNewlyAddedBook() {
@@ -171,6 +175,8 @@ function displayNewlyAddedBook() {
 
     updateRemoveListeners();
     updateReadListeners();
+    populateStorage();
+    getLocalLibrary();
 }
 
 function openForm() {
@@ -192,6 +198,8 @@ function bookCardRemoveButtonHandler(e) {
     currentCard.remove();
     bookCardRemoveButtons = document.querySelectorAll('.deleteCardButton');
     displayBooks();
+    populateStorage();
+    getLocalLibrary();
 }
 
 function bookCardReadButtonsHandler(e) {
@@ -208,6 +216,8 @@ function bookCardReadButtonsHandler(e) {
         currentCardReadButton.textContent = "Read";
         currentCardReadButton.style.backgroundColor = "#BAFFAD";
     }
+    populateStorage();
+    getLocalLibrary();
 }
 
 function updateRemoveListeners() {
@@ -238,6 +248,41 @@ function updateReadListeners() {
     });
 }
 
+// Detect whether local storage is available and supported
+function storageAvailable(type) {
+    var storage;
+    try {
+        storage = window[type];
+        var x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            (storage && storage.length !== 0);
+    }
+}
+
+function populateStorage() {
+    localStorage.setItem('library', JSON.stringify(library));
+}
+
+function getLocalLibrary() {
+    let storageReturn = localStorage.getItem('library');
+    library = JSON.parse(storageReturn);
+}
+
 const newBookFormButton = document.getElementById('newBookFormButton')
 const newBookForm = document.getElementById('formModal');
 const closeFormButton = document.getElementById('closeFormButton');
@@ -257,7 +302,19 @@ library.push(theSilmarillion);
 library.push(idyllsOfTheKing);
 library.push(ivanhoe);
 
+// If local storage is available.
+if (storageAvailable('localStorage')) {
+    if(localStorage.length) {
+        getLocalLibrary();
+      } else {
+        populateStorage();
+      }
+  } else {
+    
+  }
+
 displayBooks();
+
 
 newBookFormButton.addEventListener('click', () => {
     openForm();

@@ -8,3 +8,4 @@ The Odin Project - JavaScript Pathway - Project 1: Library
 5. Fixed bug relating to updating eventlisteners, element IDs and the library array on deletiion of a card.
 6. Basic styling finished, all required functionality present. 
 7. Fixed bug - form close button was resubmitting. 
+8. Implemented localStorage, updated on addition of a new book or when a change is made to an exisiting one. 
