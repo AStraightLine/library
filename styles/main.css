@@ -74,38 +74,49 @@ content {
 
 .bookTitleInfo {
     width: 15vw;
+    height: 4vh;
     font-size: 1.25vw;
     margin-bottom: 0.75vh;
 }
 
 .bookAuthorInfo {
     width: 15vw;
+    height: 3vh;
     font-size: 1vw;
-    margin-bottom: 0.5vh;
+    margin-bottom: 0.75vh;
 }
 
 .bookDateInfo {
     width: 15vw;
-    font-size: 1vw;
+    height: 3vh;
+    font-size: 0.9vw;
+    margin-bottom: 0.75vh;
 }
 
 .bookCardButtonsContainer {
+    height: 2vw;
+    height: 4vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-end;
 }
 
 .bookReadButton {
     width: 5vw;
+    height: 3vh;
     border: none;
     border-radius: 0.1vw;
+    font-size: 0.8vw;
     filter: drop-shadow(0.3em 0.3em 0.3em rgba(25, 25, 25, 0.3));
 }
 
 .deleteCardButton {
     width: 5vw;
+    height: 3vh;
     border: none;
     border-radius: 0.1vw;
+    font-size: 0.8vw;
     filter: drop-shadow(0.3em 0.3em 0.3em rgba(25, 25, 25, 0.3));
 }
 

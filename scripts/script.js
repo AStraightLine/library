@@ -58,8 +58,10 @@ function displayBooks() {
         deleteCardButton.classList.add('deleteCardButton');
         if(library[i].read == true || library[i].read == "true") {
             bookReadButton.textContent = "Read";
+            bookReadButton.style.backgroundColor = "#BAFFAD";
         } else {
             bookReadButton.textContent = "Not Read";
+            bookReadButton.style.backgroundColor = "#FFC9AD";
         }
         bookTitle.textContent = library[i].title;
         bookAuthor.textContent = "By: " + library[i].author;
@@ -107,8 +109,10 @@ function displayNewlyAddedBook() {
     deleteCardButton.classList.add('deleteCardButton');
     if(library[(library.length)-1].read == "true" || library[((library.length)-1)].read == true) {
         bookReadButton.textContent = "Read";
+        bookReadButton.style.backgroundColor = "#BAFFAD";
     } else {
         bookReadButton.textContent = "Not Read";
+        bookReadButton.style.backgroundColor = "#FFC9AD";
     }
     bookTitle.textContent = library[((library.length)-1)].title;
     bookAuthor.textContent = "By: " + library[((library.length)-1)].author;
@@ -198,9 +202,11 @@ function bookCardReadButtonsHandler(e) {
     if(library[currentCard].read == true || library[currentCard].read == "true") {
         library[currentCard].read = false;
         currentCardReadButton.textContent = "Not Read";
+        currentCardReadButton.style.backgroundColor = "#FFC9AD";
     } else {
         library[currentCard].read = true;
         currentCardReadButton.textContent = "Read";
+        currentCardReadButton.style.backgroundColor = "#BAFFAD";
     }
 }
 
