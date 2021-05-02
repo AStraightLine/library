@@ -7,3 +7,4 @@ The Odin Project - JavaScript Pathway - Project 1: Library
 4. Implemented functionality for changing 'Read' status of a book, both newly added and already present, and for deleting book cards from the library and display.
 5. Fixed bug relating to updating eventlisteners, element IDs and the library array on deletiion of a card.
 6. Basic styling finished, all required functionality present. 
+7. Fixed bug - form close button was resubmitting. 
