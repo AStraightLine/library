@@ -1,9 +1,11 @@
-function Book(title, author, pages, date, read) {
-    this.title = title,
-    this.author = author,
-    this.pages = pages,
-    this.date = date,
-    this.read = read
+class Book {
+    constructor(title, author, pages, date, read) {
+        this.title = title,
+        this.author = author,
+        this.pages = pages,
+        this.date = date,
+        this.read = read
+    }
 }
 
 function addBookToLibrary() {
